@@ -1,0 +1,24 @@
+name: Build Xenos
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Build x64
+        run: msbuild Xenos.sln /p:Configuration=Release /p:Platform=x64
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Xenos-x64
+          path: bin/Release/
