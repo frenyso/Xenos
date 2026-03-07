@@ -1,12 +1,12 @@
 version: 1.0.{build}
 clone_folder: c:\projects\xenos
-image: Visual Studio 2017
+image: Visual Studio 2019
 
 install:
   - cmd: git submodule update --init --recursive
 
 build_script:
-  - msbuild Xenos.sln /m /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v141
+  - msbuild Xenos.sln /m /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v141 /p:WindowsTargetPlatformVersion=10.0.19041.0
 
 artifacts:
   - path: bin\x64\Release\**\*.*
